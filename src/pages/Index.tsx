@@ -35,14 +35,14 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-400 p-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 animate-bounce-in">
           <div className="flex items-center justify-center mb-4">
             <Brain className="w-12 h-12 text-white mr-3 animate-star-twinkle" />
             <h1 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg">
-              AI Kids Explorer
+              SmartPlay Academy
             </h1>
             <Gamepad className="w-12 h-12 text-white ml-3 animate-wiggle" />
           </div>

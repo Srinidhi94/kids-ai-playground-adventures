@@ -92,10 +92,10 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-400 p-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
           <Button
             onClick={onBack}
             variant="outline"
@@ -106,7 +106,7 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
           </Button>
           
           <div className="flex items-center space-x-4">
-            <Badge className="bg-white/90 text-gray-700 px-3 py-1">
+            <Badge className="bg-white/90 text-gray-700 px-3 py-1 pointer-events-none">
               Step {currentStep + 1} of {totalSteps}
             </Badge>
             <div className="flex items-center text-white font-semibold">

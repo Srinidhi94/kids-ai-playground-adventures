@@ -27,7 +27,7 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
     
     setTimeout(() => {
       onStepComplete(score);
-    }, 2000);
+    }, 4000);
   };
 
   const handleContinue = () => {
@@ -105,10 +105,10 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
                 {step.correctAnswer === selectedAnswer ? (
                   <CheckCircle className="w-6 h-6 text-green-500 mr-2" />
                 ) : (
-                  <XCircle className="w-6 h-6 text-red-500 mr-2" />
+                  <CheckCircle className="w-6 h-6 text-blue-500 mr-2" />
                 )}
                 <span className="font-semibold text-gray-800">
-                  {step.correctAnswer === selectedAnswer ? 'Awesome!' : 'Good try!'}
+                  {step.correctAnswer === selectedAnswer ? 'Perfect! You got it!' : 'Great thinking! Let\'s learn together!'}
                 </span>
               </div>
               <p className="text-gray-700">{step.explanation}</p>

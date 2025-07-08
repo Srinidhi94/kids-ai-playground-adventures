@@ -27,7 +27,7 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
     
     setTimeout(() => {
       onStepComplete(score);
-    }, 2000);
+    }, 4000);
   };
 
   const handleContinue = () => {
@@ -116,10 +116,10 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
                 {step.correctAnswer === selectedAnswer ? (
                   <CheckCircle className="w-6 h-6 text-green-500 mr-2" />
                 ) : (
-                  <XCircle className="w-6 h-6 text-orange-500 mr-2" />
+                  <CheckCircle className="w-6 h-6 text-blue-500 mr-2" />
                 )}
                 <span className="font-bold text-gray-800 text-lg">
-                  {step.correctAnswer === selectedAnswer ? 'Brilliant Problem Solving!' : 'Great Thinking!'}
+                  {step.correctAnswer === selectedAnswer ? 'Brilliant Problem Solving!' : 'Great Thinking! Let\'s explore this together!'}
                 </span>
               </div>
               <p className="text-gray-700 text-left">{step.explanation}</p>

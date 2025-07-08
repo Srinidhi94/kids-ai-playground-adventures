@@ -27,7 +27,7 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
     
     setTimeout(() => {
       onStepComplete(score);
-    }, 2500);
+    }, 4500);
   };
 
   const handleContinue = () => {
@@ -122,10 +122,10 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
                 {step.correctAnswer === selectedAnswer ? (
                   <CheckCircle className="w-6 h-6 text-green-500 mr-2" />
                 ) : (
-                  <XCircle className="w-6 h-6 text-purple-500 mr-2" />
+                  <CheckCircle className="w-6 h-6 text-blue-500 mr-2" />
                 )}
                 <span className="font-bold text-gray-800 text-lg">
-                  {step.correctAnswer === selectedAnswer ? 'Amazing Teaching!' : 'Good Learning Attempt!'}
+                  {step.correctAnswer === selectedAnswer ? 'Amazing Teaching!' : 'Wonderful exploration! Let\'s discover more!'}
                 </span>
               </div>
               <p className="text-gray-700 text-left leading-relaxed">{step.explanation}</p>
