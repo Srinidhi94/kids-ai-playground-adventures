@@ -8,7 +8,7 @@ interface AuthContextType {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signUp: (email: string, password: string, displayName: string) => Promise<{ error: any }>;
-  signInWithProvider: (provider: 'google' | 'facebook' | 'apple') => Promise<{ error: any }>;
+  // signInWithProvider: (provider: 'google' | 'facebook' | 'apple') => Promise<{ error: any }>;
   signOut: () => Promise<{ error: any }>;
 }
 
@@ -75,15 +75,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return { error };
   };
 
-  const signInWithProvider = async (provider: 'google' | 'facebook' | 'apple') => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: `${window.location.origin}/`,
-      },
-    });
-    return { error };
-  };
+  // OAuth providers disabled for now but can be easily re-enabled
+  // const signInWithProvider = async (provider: 'google' | 'facebook' | 'apple') => {
+  //   const { error } = await supabase.auth.signInWithOAuth({
+  //     provider,
+  //     options: {
+  //       redirectTo: `${window.location.origin}/`,
+  //     },
+  //   });
+  //   return { error };
+  // };
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -96,7 +97,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     loading,
     signIn,
     signUp,
-    signInWithProvider,
+    // signInWithProvider,
     signOut,
   };
 

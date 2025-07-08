@@ -93,7 +93,7 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
                   key={index}
                   onClick={() => handleAnswer(index)}
                   disabled={hasAnswered}
-                  className={`w-full p-4 text-left justify-start h-auto transition-all duration-300 ${
+                  className={`w-full min-h-[3.5rem] p-4 text-base leading-relaxed text-left justify-start transition-all duration-300 ${
                     hasAnswered
                       ? selectedAnswer === index
                         ? step.correctAnswer === index
@@ -102,11 +102,13 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
                         : step.correctAnswer === index
                         ? 'bg-green-200 border-2 border-green-500 text-green-800'
                         : 'bg-gray-200 text-gray-600'
-                      : 'bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-gray-800 hover:scale-102 border-2 border-transparent hover:border-purple-300'
+                      : 'bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-gray-800 hover:scale-[1.01] border-2 border-transparent hover:border-purple-300 shadow-sm'
                   }`}
                 >
-                  <span className="font-semibold mr-2">{String.fromCharCode(65 + index)}.</span>
-                  {option}
+                  <div className="flex items-start space-x-3">
+                    <span className="font-bold text-lg flex-shrink-0">{String.fromCharCode(65 + index)}.</span>
+                    <span className="leading-relaxed">{option}</span>
+                  </div>
                 </Button>
               ))}
             </div>
@@ -128,7 +130,8 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
               <div className="text-center">
                 <Button
                   onClick={handleContinue}
-                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold px-6 py-2 text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                  size="lg"
+                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Continue
                 </Button>

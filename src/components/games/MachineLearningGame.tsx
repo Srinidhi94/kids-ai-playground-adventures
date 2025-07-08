@@ -89,13 +89,13 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
           </div>
           
           {step.options && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="space-y-3 mb-6">
               {step.options.map((option, index) => (
                 <Button
                   key={index}
                   onClick={() => handleAnswer(index)}
                   disabled={hasAnswered}
-                  className={`p-6 h-auto text-left justify-start transition-all duration-300 ${
+                  className={`w-full min-h-[3.5rem] p-4 text-base leading-relaxed text-left justify-start transition-all duration-300 ${
                     hasAnswered
                       ? selectedAnswer === index
                         ? step.correctAnswer === index
@@ -104,14 +104,12 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
                         : step.correctAnswer === index
                         ? 'bg-green-200 border-2 border-green-500 text-green-800'
                         : 'bg-gray-200 text-gray-600'
-                      : 'bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-gray-800 hover:scale-105 border-2 border-transparent hover:border-purple-300'
+                      : 'bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-gray-800 hover:scale-[1.01] border-2 border-transparent hover:border-purple-300 shadow-sm'
                   }`}
                 >
-                  <div className="w-full">
-                    <span className="font-bold text-lg block mb-1">
-                      {String.fromCharCode(65 + index)}.
-                    </span>
-                    <span className="text-sm leading-relaxed">{option}</span>
+                  <div className="flex items-start space-x-3">
+                    <span className="font-bold text-lg flex-shrink-0">{String.fromCharCode(65 + index)}.</span>
+                    <span className="leading-relaxed">{option}</span>
                   </div>
                 </Button>
               ))}
@@ -134,7 +132,8 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
               <div className="text-center">
                 <Button
                   onClick={handleContinue}
-                  className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold px-6 py-2 text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                  size="lg"
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Continue
                 </Button>
