@@ -24,13 +24,15 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
     
     const isCorrect = step.correctAnswer === answerIndex;
     const score = isCorrect ? 100 : 75; // Encourage problem-solving attempts
-    
-    setTimeout(() => {
-      onStepComplete(score);
-    }, 4000);
   };
 
   const handleContinue = () => {
+    const isCorrect = step.correctAnswer === selectedAnswer;
+    const score = isCorrect ? 100 : 75;
+    onStepComplete(score);
+  };
+
+  const handleIntroOrExplanationContinue = () => {
     onStepComplete(100);
   };
 
@@ -55,7 +57,7 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
           </div>
           <div className="text-center">
             <Button
-              onClick={handleContinue}
+              onClick={handleIntroOrExplanationContinue}
               className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Let's Solve Problems! 🧩
@@ -122,7 +124,15 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
                   {step.correctAnswer === selectedAnswer ? 'Brilliant Problem Solving!' : 'Great Thinking! Let\'s explore this together!'}
                 </span>
               </div>
-              <p className="text-gray-700 text-left">{step.explanation}</p>
+              <p className="text-gray-700 text-left mb-4">{step.explanation}</p>
+              <div className="text-center">
+                <Button
+                  onClick={handleContinue}
+                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold px-6 py-2 text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  Continue to Next Step! ✨
+                </Button>
+              </div>
             </div>
           )}
         </div>

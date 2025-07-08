@@ -127,5 +127,89 @@ export const levels: Level[] = [
         explanation: "Exactly! Your pet learned from round ball examples, so it's best at recognizing other round balls. This shows why AI needs diverse training data to work well!"
       }
     ]
+  },
+  {
+    id: 4,
+    title: "Smart Voice Helper",
+    description: "Discover how AI understands and speaks! Learn about voice assistants and natural language processing through fun activities.",
+    icon: "🗣️",
+    difficulty: "easy",
+    estimatedTime: 6,
+    concept: "Natural Language Processing",
+    gameType: "pattern",
+    steps: [
+      {
+        id: 1,
+        type: "intro",
+        title: "Hello, Voice Assistant!",
+        content: "Have you ever talked to Siri, Alexa, or Google? They use Natural Language Processing (NLP) to understand human speech and respond! Let's discover how AI learns to understand and speak like humans."
+      },
+      {
+        id: 2,
+        type: "activity", 
+        title: "Teaching AI to Understand",
+        content: "You say 'I'm hungry' to a voice assistant. What does the AI need to understand first?",
+        options: ["The individual sounds (I, am, hungry)", "The meaning (you want food)", "Your voice tone (how you sound)", "The time of day"],
+        correctAnswer: 0,
+        explanation: "Great! AI first breaks down speech into individual sounds and words, then figures out the meaning. It's like learning to read - first letters, then words, then sentences!"
+      },
+      {
+        id: 3,
+        type: "explanation",
+        title: "How AI Learns Language",
+        content: "AI learns language by reading millions of books, articles, and conversations. It discovers that 'hungry' relates to 'food' and 'eat', just like you learned that 'meow' means a cat is talking to you!"
+      },
+      {
+        id: 4,
+        type: "quiz",
+        title: "Language Detective Quiz",
+        content: "Which sentence would be HARDEST for AI to understand correctly?",
+        options: ["'Turn on the lights please'", "'It's raining cats and dogs'", "'What time is it?'", "'Play my favorite song'"],
+        correctAnswer: 1,
+        explanation: "Exactly! 'Raining cats and dogs' is an idiom that means heavy rain, not actual animals falling! AI struggles with expressions that don't mean exactly what they say."
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: "Future Predictor",
+    description: "Learn how AI predicts the future by looking at patterns from the past. Become a prediction expert with data and trends!",
+    icon: "🔮",
+    difficulty: "medium",
+    estimatedTime: 7,
+    concept: "Predictive Analytics", 
+    gameType: "problem-solving",
+    steps: [
+      {
+        id: 1,
+        type: "intro",
+        title: "Welcome Future Predictor!",
+        content: "Did you know AI can help predict if it will rain tomorrow, which movie you'll like, or even what you might want to buy? AI looks at patterns from the past to make smart guesses about the future!"
+      },
+      {
+        id: 2,
+        type: "activity",
+        title: "Weather Prediction Challenge", 
+        content: "You notice it has rained every Tuesday for the past month. What's the best prediction for next Tuesday?",
+        options: ["It will definitely rain", "It will probably rain", "It definitely won't rain", "Weather is completely random"],
+        correctAnswer: 1,
+        explanation: "Smart thinking! Patterns help us make good guesses, but we can't be 100% certain. AI uses 'probably' and 'likely' because the future isn't guaranteed!"
+      },
+      {
+        id: 3,
+        type: "explanation",
+        title: "How AI Makes Predictions",
+        content: "AI looks at tons of past data (like weather patterns, your movie ratings, or shopping history) and finds hidden connections. The more data it has, the better its predictions become!"
+      },
+      {
+        id: 4,
+        type: "quiz",
+        title: "Prediction Expert Quiz",
+        content: "An AI suggests you might like a new song. What data probably helped it decide?",
+        options: ["Songs you skipped quickly", "Songs you played repeatedly", "Songs your friends like", "All of the above"],
+        correctAnswer: 3,
+        explanation: "Brilliant! AI uses all available data - your listening habits, skip patterns, and even social connections - to make better predictions. More data usually means better guesses!"
+      }
+    ]
   }
 ];

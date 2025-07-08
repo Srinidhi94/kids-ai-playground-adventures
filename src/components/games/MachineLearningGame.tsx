@@ -24,13 +24,15 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
     
     const isCorrect = step.correctAnswer === answerIndex;
     const score = isCorrect ? 100 : 80; // Encourage learning attempts
-    
-    setTimeout(() => {
-      onStepComplete(score);
-    }, 4500);
   };
 
   const handleContinue = () => {
+    const isCorrect = step.correctAnswer === selectedAnswer;
+    const score = isCorrect ? 100 : 80;
+    onStepComplete(score);
+  };
+
+  const handleIntroOrExplanationContinue = () => {
     onStepComplete(100);
   };
 
@@ -56,7 +58,7 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
           </div>
           <div className="text-center">
             <Button
-              onClick={handleContinue}
+              onClick={handleIntroOrExplanationContinue}
               className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Start Teaching! 🎓
@@ -128,7 +130,15 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
                   {step.correctAnswer === selectedAnswer ? 'Amazing Teaching!' : 'Wonderful exploration! Let\'s discover more!'}
                 </span>
               </div>
-              <p className="text-gray-700 text-left leading-relaxed">{step.explanation}</p>
+              <p className="text-gray-700 text-left leading-relaxed mb-4">{step.explanation}</p>
+              <div className="text-center">
+                <Button
+                  onClick={handleContinue}
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold px-6 py-2 text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  Continue to Next Step! ✨
+                </Button>
+              </div>
             </div>
           )}
         </div>
