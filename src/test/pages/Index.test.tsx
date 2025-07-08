@@ -33,7 +33,7 @@ describe('Index Page', () => {
   it('renders the main title', () => {
     const { getByText } = renderWithProviders(<Index />)
     
-    expect(getByText('AI Learning Quest')).toBeInTheDocument()
+    expect(getByText('Future Minds AI')).toBeInTheDocument()
   })
 
   it('renders the subtitle', () => {
