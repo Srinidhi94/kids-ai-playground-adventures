@@ -83,7 +83,7 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
                   key={index}
                   onClick={() => handleAnswer(index)}
                   disabled={hasAnswered}
-                  className={`w-full min-h-[3.5rem] p-4 text-base leading-relaxed text-left justify-start transition-all duration-300 ${
+                  className={`w-full min-h-[4rem] p-5 text-base leading-relaxed text-left justify-start transition-all duration-300 ${
                     hasAnswered
                       ? selectedAnswer === index
                         ? step.correctAnswer === index
@@ -95,9 +95,9 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
                       : 'bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 hover:scale-[1.02] text-white shadow-md'
                   }`}
                 >
-                  <div className="flex items-start space-x-3">
-                    <span className="font-bold text-lg flex-shrink-0">{String.fromCharCode(65 + index)}.</span>
-                    <span className="leading-relaxed">{option}</span>
+                  <div className="flex items-start space-x-3 w-full">
+                    <span className="font-bold text-lg flex-shrink-0 mt-0.5">{String.fromCharCode(65 + index)}.</span>
+                    <span className="leading-relaxed flex-1 text-left break-words">{option}</span>
                   </div>
                 </Button>
               ))}
@@ -105,18 +105,24 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
           )}
           
           {showResult && step.explanation && (
-            <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400 animate-bounce-in">
-              <div className="flex items-center mb-2">
+            <div className={`p-6 rounded-lg border-l-4 animate-bounce-in ${
+              step.correctAnswer === selectedAnswer 
+                ? 'bg-green-50 border-green-400' 
+                : 'bg-red-50 border-red-400'
+            }`}>
+              <div className="flex items-center mb-3">
                 {step.correctAnswer === selectedAnswer ? (
                   <CheckCircle className="w-6 h-6 text-green-500 mr-2" />
                 ) : (
-                  <CheckCircle className="w-6 h-6 text-blue-500 mr-2" />
+                  <XCircle className="w-6 h-6 text-red-500 mr-2" />
                 )}
-                <span className="font-semibold text-gray-800">
-                  {step.correctAnswer === selectedAnswer ? 'Perfect! You got it!' : 'Great thinking! Let\'s learn together!'}
+                <span className="font-semibold text-gray-800 text-lg">
+                  {step.correctAnswer === selectedAnswer 
+                    ? 'Perfect! You got it!' 
+                    : 'Not quite right, but great try!'}
                 </span>
               </div>
-              <p className="text-gray-700 mb-4">{step.explanation}</p>
+              <p className="text-gray-700 mb-4 leading-relaxed">{step.explanation}</p>
               <div className="text-center">
                 <Button
                   onClick={handleContinue}
