@@ -1,25 +1,105 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Brain, Gamepad, BookOpen, Play } from 'lucide-react';
+import { Star, Brain, Gamepad, BookOpen, Play, LogIn, LogOut, User } from 'lucide-react';
 import { LevelCard } from '@/components/LevelCard';
 import { GameLevel } from '@/components/GameLevel';
 import { levels } from '@/data/levels';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [currentLevel, setCurrentLevel] = useState<number | null>(null);
   const [completedLevels, setCompletedLevels] = useState<Set<number>>(new Set());
+  const { user, signOut, loading } = useAuth();
+  const { toast } = useToast();
 
-  const handleLevelComplete = (levelId: number, score: number) => {
-    setCompletedLevels(prev => new Set([...prev, levelId]));
+  // Load user progress
+  useEffect(() => {
+    if (user) {
+      loadUserProgress();
+    }
+  }, [user]);
+
+  const loadUserProgress = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('user_progress')
+        .select('level_id')
+        .eq('user_id', user?.id);
+
+      if (error) throw error;
+      
+      const completed = new Set(data.map(item => item.level_id));
+      setCompletedLevels(completed);
+    } catch (error) {
+      console.error('Error loading progress:', error);
+    }
+  };
+
+  const handleLevelComplete = async (levelId: number, score: number) => {
+    if (user) {
+      try {
+        const { error } = await supabase
+          .from('user_progress')
+          .upsert({ 
+            user_id: user.id, 
+            level_id: levelId, 
+            score 
+          }, { 
+            onConflict: 'user_id,level_id' 
+          });
+
+        if (error) throw error;
+        
+        setCompletedLevels(prev => new Set([...prev, levelId]));
+        toast({
+          title: "Level Completed!",
+          description: `Great job! You scored ${score} points.`,
+        });
+      } catch (error) {
+        console.error('Error saving progress:', error);
+        toast({
+          title: "Error",
+          description: "Failed to save progress.",
+          variant: "destructive",
+        });
+      }
+    } else {
+      setCompletedLevels(prev => new Set([...prev, levelId]));
+      toast({
+        title: "Level Completed!",
+        description: `Great job! You scored ${score} points. Sign in to save your progress!`,
+      });
+    }
     setCurrentLevel(null);
-    console.log(`Level ${levelId} completed with score: ${score}`);
+  };
+
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to sign out.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleBackToLevels = () => {
     setCurrentLevel(null);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-400 p-4 flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
 
   if (currentLevel !== null) {
     const level = levels.find(l => l.id === currentLevel);
@@ -50,6 +130,51 @@ const Index = () => {
             Discover AI through fun adventures and games! 🚀
           </p>
         </div>
+
+        {/* Auth Section */}
+        <Card className="mb-6 bg-white/95 backdrop-blur-sm shadow-xl border-0">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                {user ? (
+                  <>
+                    <User className="w-5 h-5 text-gray-600 mr-2" />
+                    <span className="text-gray-700">Welcome back!</span>
+                  </>
+                ) : (
+                  <>
+                    <LogIn className="w-5 h-5 text-gray-600 mr-2" />
+                    <span className="text-gray-700">Sign in to save your progress</span>
+                  </>
+                )}
+              </div>
+              <div>
+                {user ? (
+                  <Button
+                    onClick={handleSignOut}
+                    variant="outline"
+                    size="sm"
+                    className="text-gray-600 hover:text-gray-800"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </Button>
+                ) : (
+                  <Link to="/auth">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-gray-600 hover:text-gray-800"
+                    >
+                      <LogIn className="w-4 h-4 mr-2" />
+                      Sign In
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Progress Stats */}
         <Card className="mb-6 bg-white/95 backdrop-blur-sm shadow-xl border-0">
