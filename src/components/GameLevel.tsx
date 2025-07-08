@@ -29,6 +29,7 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
       case 'pattern':
         return (
           <PatternGame
+            key={`${level.id}-${currentStep}`}
             step={level.steps[currentStep]}
             onStepComplete={handleStepComplete}
           />
@@ -36,6 +37,7 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
       case 'problem-solving':
         return (
           <ProblemSolvingGame
+            key={`${level.id}-${currentStep}`}
             step={level.steps[currentStep]}
             onStepComplete={handleStepComplete}
           />
@@ -43,6 +45,7 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
       case 'machine-learning':
         return (
           <MachineLearningGame
+            key={`${level.id}-${currentStep}`}
             step={level.steps[currentStep]}
             onStepComplete={handleStepComplete}
           />

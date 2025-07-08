@@ -83,7 +83,7 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
                   key={index}
                   onClick={() => handleAnswer(index)}
                   disabled={hasAnswered}
-                  className={`h-16 text-4xl transition-all duration-300 ${
+                  className={`h-16 text-2xl md:text-3xl transition-all duration-300 break-words whitespace-normal ${
                     hasAnswered
                       ? selectedAnswer === index
                         ? step.correctAnswer === index
@@ -119,7 +119,7 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
                   onClick={handleContinue}
                   className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold px-6 py-2 text-base shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  Continue to Next Step! ✨
+                  Continue
                 </Button>
               </div>
             </div>

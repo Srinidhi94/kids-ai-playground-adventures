@@ -130,7 +130,7 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
                   onClick={handleContinue}
                   className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold px-6 py-2 text-base shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  Continue to Next Step! ✨
+                  Continue
                 </Button>
               </div>
             </div>
