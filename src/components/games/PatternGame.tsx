@@ -77,24 +77,25 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
           </p>
           
           {step.options && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {step.options.map((option, index) => (
                 <Button
                   key={index}
                   onClick={() => handleAnswer(index)}
                   disabled={hasAnswered}
-                  className={`h-16 text-2xl md:text-3xl transition-all duration-300 break-words whitespace-normal ${
+                  className={`min-h-[4rem] p-4 text-sm whitespace-normal text-left transition-all duration-300 ${
                     hasAnswered
                       ? selectedAnswer === index
                         ? step.correctAnswer === index
-                          ? 'bg-green-500 hover:bg-green-500'
-                          : 'bg-red-500 hover:bg-red-500'
+                          ? 'bg-green-500 hover:bg-green-500 text-white'
+                          : 'bg-red-500 hover:bg-red-500 text-white'
                         : step.correctAnswer === index
-                        ? 'bg-green-200 border-2 border-green-500'
-                        : 'bg-gray-200'
-                      : 'bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 hover:scale-105'
+                        ? 'bg-green-200 border-2 border-green-500 text-green-800'
+                        : 'bg-gray-200 text-gray-600'
+                      : 'bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 hover:scale-105 text-white'
                   }`}
                 >
+                  <span className="font-bold mr-2">{String.fromCharCode(65 + index)}.</span>
                   {option}
                 </Button>
               ))}
