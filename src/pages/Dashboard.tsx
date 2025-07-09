@@ -1,10 +1,10 @@
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Star, Brain, Gamepad, BookOpen, Play, LogIn, LogOut, MoreVertical } from 'lucide-react';
+import { Star, Brain, Gamepad, BookOpen, Play, LogOut, MoreVertical } from 'lucide-react';
 import { LevelCard } from '@/components/LevelCard';
 import { GameLevel } from '@/components/GameLevel';
 import { levels } from '@/data/levels';
@@ -17,6 +17,7 @@ const Index = () => {
   const [completedLevels, setCompletedLevels] = useState<Set<number>>(new Set());
   const { user, signOut, loading } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   // Load user progress
   useEffect(() => {
@@ -90,10 +91,7 @@ const Index = () => {
         variant: "destructive",
       });
     } else {
-      toast({
-        title: "Success",
-        description: "You have been signed out successfully.",
-      });
+      navigate('/');
     }
   };
 
@@ -109,103 +107,10 @@ const Index = () => {
     );
   }
 
-  // Require authentication to play
+  // Redirect unauthenticated users to homepage
   if (!user) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-400">
-        <div className="w-full max-w-md mx-auto min-h-screen bg-white/10 backdrop-blur-sm">
-          {/* Mobile Header */}
-          <div className="sticky top-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/20">
-            <div className="flex items-center justify-between p-4">
-              <div className="flex items-center space-x-3">
-                <Brain className="w-8 h-8 text-white animate-star-twinkle" />
-                <h1 className="text-xl font-bold text-white drop-shadow-lg">
-                  Future Minds AI
-                </h1>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Landing Section */}
-          <div className="p-4 space-y-6">
-
-            {/* Main CTA Card */}
-            <Card className="bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 text-white shadow-2xl border-0 transform hover:scale-105 transition-transform">
-              <CardContent className="p-6 text-center">
-                <div className="flex items-center justify-center mb-4">
-                  <Gamepad className="w-16 h-16 text-white animate-wiggle" />
-                </div>
-                <h2 className="text-2xl font-bold mb-3">Start Your AI Adventure</h2>
-                <p className="text-lg mb-6 text-white/95">
-                  Join thousands learning AI through games and interactive experiences
-                </p>
-                <Link to="/auth">
-                  <Button 
-                    size="lg"
-                    className="bg-white text-purple-600 hover:bg-gray-100 font-bold px-10 py-4 text-lg shadow-xl transform hover:scale-105 transition-all"
-                  >
-                    <LogIn className="w-6 h-6 mr-3" />
-                    Start Your AI Adventure
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Quick Features */}
-            <div className="grid grid-cols-2 gap-3">
-              <Card className="bg-white/95 backdrop-blur-sm shadow-lg border-0">
-                <CardContent className="p-4 text-center">
-                  <BookOpen className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-                  <h4 className="text-sm font-bold text-gray-800 mb-1">Interactive Learning</h4>
-                  <p className="text-xs text-gray-600">
-                    Step-by-step adventures
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/95 backdrop-blur-sm shadow-lg border-0">
-                <CardContent className="p-4 text-center">
-                  <Star className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-                  <h4 className="text-sm font-bold text-gray-800 mb-1">Track Progress</h4>
-                  <p className="text-xs text-gray-600">
-                    Earn stars & achievements
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Secondary CTA */}
-            <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
-              <CardContent className="p-5 text-center">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Why Choose Future Minds AI?</h3>
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center justify-center text-sm text-gray-600">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                    Learn through fun games & puzzles
-                  </div>
-                  <div className="flex items-center justify-center text-sm text-gray-600">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                    No prior AI knowledge needed
-                  </div>
-                  <div className="flex items-center justify-center text-sm text-gray-600">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                    Ready to explore AI concepts?
-                  </div>
-                </div>
-                <Link to="/auth">
-                  <Button 
-                    variant="outline"
-                    className="border-purple-500 text-purple-600 hover:bg-purple-50 font-semibold"
-                  >
-                    Join Now →
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    );
+    window.location.href = '/';
+    return null;
   }
 
   if (currentLevel !== null) {
@@ -235,43 +140,31 @@ const Index = () => {
             </div>
             
             {/* User Menu */}
-            {user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white/30 transition-colors p-0"
-                  >
-                    <MoreVertical className="w-5 h-5 text-white" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56" align="end" forceMount>
-                  <DropdownMenuItem disabled className="flex flex-col items-start px-3 py-2">
-                    <div className="font-medium text-sm">
-                      {user.user_metadata?.full_name || 'User'}
-                    </div>
-                    <div className="text-xs text-gray-500 truncate w-full">
-                      {user.email}
-                    </div>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleSignOut} className="px-3 py-2">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Sign Out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link to="/auth">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
                 <Button 
+                  variant="ghost" 
                   size="sm"
-                  className="bg-white/20 hover:bg-white/30 text-white border border-white/30 hover:border-white/50 font-semibold"
+                  className="h-10 w-10 rounded-full bg-white/20 hover:bg-white/30 transition-colors p-0"
                 >
-                  <LogIn className="w-4 h-4 mr-2" />
-                  Sign In
+                  <MoreVertical className="w-5 h-5 text-white" />
                 </Button>
-              </Link>
-            )}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuItem disabled className="flex flex-col items-start px-3 py-2">
+                  <div className="font-medium text-sm">
+                    {user.user_metadata?.full_name || 'User'}
+                  </div>
+                  <div className="text-xs text-gray-500 truncate w-full">
+                    {user.email}
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut} className="px-3 py-2">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Sign Out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
 

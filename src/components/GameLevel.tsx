@@ -135,7 +135,7 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
                 className="bg-white/20 hover:bg-white/30 text-white border border-white/30"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
+                Cancel
               </Button>
               
               <div className="flex items-center space-x-3">
