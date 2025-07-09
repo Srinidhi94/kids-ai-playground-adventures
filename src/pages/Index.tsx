@@ -129,65 +129,87 @@ const Index = () => {
           {/* Hero Landing Section */}
           <div className="p-4 space-y-6">
             {/* Main Hero */}
-            <div className="text-center py-8">
-              <div className="flex items-center justify-center mb-6">
-                <Brain className="w-20 h-20 text-white animate-star-twinkle drop-shadow-lg" />
+            <div className="text-center py-6">
+              <div className="flex items-center justify-center mb-4">
+                <Brain className="w-16 h-16 text-white animate-star-twinkle drop-shadow-lg" />
               </div>
-              <h1 className="text-3xl font-bold text-white mb-4 drop-shadow-lg">
+              <h1 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
                 Future Minds AI
               </h1>
-              <p className="text-xl text-white/95 font-medium drop-shadow mb-8 px-4 leading-relaxed">
-                Learn AI concepts through interactive adventures and engaging games! 🚀
+              <p className="text-lg text-white/95 font-medium drop-shadow mb-6 px-4">
+                Learn AI through interactive adventures! 🚀
               </p>
             </div>
 
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 gap-4 mb-8">
-              <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
-                <CardContent className="p-5 text-center">
-                  <Gamepad className="w-12 h-12 text-purple-500 mx-auto mb-3" />
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">Interactive Games</h3>
-                  <p className="text-gray-600 text-sm">
-                    Learn through fun pattern recognition, problem-solving, and machine learning games
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
-                <CardContent className="p-5 text-center">
-                  <BookOpen className="w-12 h-12 text-blue-500 mx-auto mb-3" />
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">Step-by-Step Learning</h3>
-                  <p className="text-gray-600 text-sm">
-                    Progress through carefully designed adventures that build your AI knowledge
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
-                <CardContent className="p-5 text-center">
-                  <Star className="w-12 h-12 text-yellow-500 mx-auto mb-3" />
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">Track Progress</h3>
-                  <p className="text-gray-600 text-sm">
-                    Earn stars and track your learning journey as you master AI concepts
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Call to Action */}
-            <Card className="bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-xl border-0">
+            {/* Main CTA Card */}
+            <Card className="bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 text-white shadow-2xl border-0 transform hover:scale-105 transition-transform">
               <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold mb-3">Ready to Start Your AI Journey?</h3>
-                <p className="mb-6 text-white/90">
-                  Join thousands of learners exploring the world of artificial intelligence!
+                <div className="flex items-center justify-center mb-4">
+                  <Gamepad className="w-16 h-16 text-white animate-wiggle" />
+                </div>
+                <h2 className="text-2xl font-bold mb-3">Start Your AI Adventure</h2>
+                <p className="text-lg mb-6 text-white/95">
+                  Join thousands learning AI through games and interactive experiences
                 </p>
                 <Link to="/auth">
                   <Button 
                     size="lg"
-                    className="bg-white text-purple-600 hover:bg-gray-100 font-semibold px-8 py-3 shadow-lg"
+                    className="bg-white text-purple-600 hover:bg-gray-100 font-bold px-10 py-4 text-lg shadow-xl transform hover:scale-105 transition-all"
                   >
-                    <LogIn className="w-5 h-5 mr-2" />
+                    <LogIn className="w-6 h-6 mr-3" />
                     Get Started Free
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Quick Features */}
+            <div className="grid grid-cols-2 gap-3">
+              <Card className="bg-white/95 backdrop-blur-sm shadow-lg border-0">
+                <CardContent className="p-4 text-center">
+                  <BookOpen className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                  <h4 className="text-sm font-bold text-gray-800 mb-1">Interactive Learning</h4>
+                  <p className="text-xs text-gray-600">
+                    Step-by-step adventures
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/95 backdrop-blur-sm shadow-lg border-0">
+                <CardContent className="p-4 text-center">
+                  <Star className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+                  <h4 className="text-sm font-bold text-gray-800 mb-1">Track Progress</h4>
+                  <p className="text-xs text-gray-600">
+                    Earn stars & achievements
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Secondary CTA */}
+            <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
+              <CardContent className="p-5 text-center">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Why Choose Future Minds AI?</h3>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center justify-center text-sm text-gray-600">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    Learn through fun games & puzzles
+                  </div>
+                  <div className="flex items-center justify-center text-sm text-gray-600">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    No prior AI knowledge needed
+                  </div>
+                  <div className="flex items-center justify-center text-sm text-gray-600">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    100% free to get started
+                  </div>
+                </div>
+                <Link to="/auth">
+                  <Button 
+                    variant="outline"
+                    className="border-purple-500 text-purple-600 hover:bg-purple-50 font-semibold"
+                  >
+                    Join Now →
                   </Button>
                 </Link>
               </CardContent>
