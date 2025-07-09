@@ -17,10 +17,7 @@ interface GameLevelProps {
 }
 
 export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
-  const [currentStep, setCurrentStep] = useState(() => {
-    const savedProgress = localStorage.getItem(`level-${level.id}-progress`);
-    return savedProgress ? parseInt(savedProgress) : 0;
-  });
+  const [currentStep, setCurrentStep] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
@@ -72,7 +69,6 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
     
     if (currentStep < totalSteps - 1) {
       const nextStep = currentStep + 1;
-      localStorage.setItem(`level-${level.id}-progress`, nextStep.toString());
       setTimeout(() => {
         setCurrentStep(nextStep);
       }, 1000);
@@ -83,7 +79,6 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
       if (accuracy === 0) stars = 1;
       else if (accuracy < 1) stars = 3;
       
-      localStorage.removeItem(`level-${level.id}-progress`);
       setIsComplete(true);
       setTimeout(() => {
         onComplete(level.id, stars * 100); // Use stars for scoring

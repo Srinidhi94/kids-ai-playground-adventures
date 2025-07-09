@@ -7,6 +7,7 @@ export interface GameStep {
   options?: string[];
   correctAnswer?: number;
   explanation?: string;
+  wrongExplanation?: string;
   comic?: {
     panels: Array<{
       image: string;

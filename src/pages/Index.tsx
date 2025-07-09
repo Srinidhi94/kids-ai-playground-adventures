@@ -71,11 +71,11 @@ const Index = () => {
         });
       }
     } else {
-      setCompletedLevels(prev => new Set([...prev, levelId]));
-      const stars = Math.floor(score / 100);
+      // Not signed in - redirect to auth
       toast({
-        title: "Level Completed!",
-        description: `Great job! You earned ${stars} ${stars === 1 ? 'star' : 'stars'}! Sign in to save your progress!`,
+        title: "Sign In Required",
+        description: "Please sign in to save your progress and play adventures!",
+        variant: "destructive",
       });
     }
     setCurrentLevel(null);
@@ -105,6 +105,57 @@ const Index = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-400 p-4 flex items-center justify-center">
         <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  // Require authentication to play
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-400">
+        <div className="w-full max-w-md mx-auto min-h-screen bg-white/10 backdrop-blur-sm">
+          {/* Mobile Header */}
+          <div className="sticky top-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/20">
+            <div className="flex items-center justify-between p-4">
+              <div className="flex items-center space-x-3">
+                <Brain className="w-8 h-8 text-white animate-star-twinkle" />
+                <h1 className="text-xl font-bold text-white drop-shadow-lg">
+                  Future Minds AI
+                </h1>
+              </div>
+            </div>
+          </div>
+
+          {/* Sign-in Required Message */}
+          <div className="p-4 space-y-6">
+            <div className="text-center py-6">
+              <div className="flex items-center justify-center mb-4">
+                <Gamepad className="w-16 h-16 text-white animate-wiggle" />
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-4">Welcome to Future Minds AI!</h2>
+              <p className="text-lg text-white/90 font-medium drop-shadow px-4 mb-6">
+                Discover AI through fun adventures and games! 🚀
+              </p>
+              <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
+                <CardContent className="p-6 text-center">
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">Sign In Required</h3>
+                  <p className="text-gray-600 mb-6">
+                    Please sign in to start your AI learning journey and save your progress!
+                  </p>
+                  <Link to="/auth">
+                    <Button 
+                      size="lg"
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-8 py-3"
+                    >
+                      <LogIn className="w-5 h-5 mr-2" />
+                      Sign In to Start Learning
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

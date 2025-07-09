@@ -131,7 +131,9 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
                   }
                 </span>
               </div>
-              <p className="text-gray-700 text-center leading-relaxed text-sm mb-4">{step.explanation}</p>
+              <p className="text-gray-700 text-center leading-relaxed text-sm mb-4">
+                {isCorrect ? step.explanation : step.wrongExplanation}
+              </p>
               {!isCorrect && (
                 <div className="bg-blue-100 border border-blue-300 rounded-lg p-3 mb-4">
                   <div className="flex items-center mb-2">
