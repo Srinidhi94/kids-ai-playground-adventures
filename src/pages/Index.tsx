@@ -126,34 +126,72 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Sign-in Required Message */}
+          {/* Hero Landing Section */}
           <div className="p-4 space-y-6">
-            <div className="text-center py-6">
-              <div className="flex items-center justify-center mb-4">
-                <Gamepad className="w-16 h-16 text-white animate-wiggle" />
+            {/* Main Hero */}
+            <div className="text-center py-8">
+              <div className="flex items-center justify-center mb-6">
+                <Brain className="w-20 h-20 text-white animate-star-twinkle drop-shadow-lg" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-4">Welcome to Future Minds AI!</h2>
-              <p className="text-lg text-white/90 font-medium drop-shadow px-4 mb-6">
-                Discover AI through fun adventures and games! 🚀
+              <h1 className="text-3xl font-bold text-white mb-4 drop-shadow-lg">
+                Future Minds AI
+              </h1>
+              <p className="text-xl text-white/95 font-medium drop-shadow mb-8 px-4 leading-relaxed">
+                Learn AI concepts through interactive adventures and engaging games! 🚀
               </p>
+            </div>
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-1 gap-4 mb-8">
               <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
-                <CardContent className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">Sign In Required</h3>
-                  <p className="text-gray-600 mb-6">
-                    Please sign in to start your AI learning journey and save your progress!
+                <CardContent className="p-5 text-center">
+                  <Gamepad className="w-12 h-12 text-purple-500 mx-auto mb-3" />
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">Interactive Games</h3>
+                  <p className="text-gray-600 text-sm">
+                    Learn through fun pattern recognition, problem-solving, and machine learning games
                   </p>
-                  <Link to="/auth">
-                    <Button 
-                      size="lg"
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-8 py-3"
-                    >
-                      <LogIn className="w-5 h-5 mr-2" />
-                      Sign In to Start Learning
-                    </Button>
-                  </Link>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
+                <CardContent className="p-5 text-center">
+                  <BookOpen className="w-12 h-12 text-blue-500 mx-auto mb-3" />
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">Step-by-Step Learning</h3>
+                  <p className="text-gray-600 text-sm">
+                    Progress through carefully designed adventures that build your AI knowledge
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
+                <CardContent className="p-5 text-center">
+                  <Star className="w-12 h-12 text-yellow-500 mx-auto mb-3" />
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">Track Progress</h3>
+                  <p className="text-gray-600 text-sm">
+                    Earn stars and track your learning journey as you master AI concepts
+                  </p>
                 </CardContent>
               </Card>
             </div>
+
+            {/* Call to Action */}
+            <Card className="bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-xl border-0">
+              <CardContent className="p-6 text-center">
+                <h3 className="text-xl font-bold mb-3">Ready to Start Your AI Journey?</h3>
+                <p className="mb-6 text-white/90">
+                  Join thousands of learners exploring the world of artificial intelligence!
+                </p>
+                <Link to="/auth">
+                  <Button 
+                    size="lg"
+                    className="bg-white text-purple-600 hover:bg-gray-100 font-semibold px-8 py-3 shadow-lg"
+                  >
+                    <LogIn className="w-5 h-5 mr-2" />
+                    Get Started Free
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
