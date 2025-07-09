@@ -55,6 +55,11 @@ const Auth = () => {
           title: "Account Created!",
           description: "Please check your email to verify your account.",
         });
+        // Reset form and switch to sign in
+        setIsSignUp(false);
+        setEmail('');
+        setPassword('');
+        setDisplayName('');
       }
     } catch (error) {
       toast({
