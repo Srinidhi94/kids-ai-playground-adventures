@@ -57,9 +57,10 @@ const Index = () => {
         if (error) throw error;
         
         setCompletedLevels(prev => new Set([...prev, levelId]));
+        const stars = Math.floor(score / 100);
         toast({
           title: "Level Completed!",
-          description: `Great job! You scored ${score} points.`,
+          description: `Great job! You earned ${stars} ${stars === 1 ? 'star' : 'stars'}!`,
         });
       } catch (error) {
         console.error('Error saving progress:', error);
@@ -71,9 +72,10 @@ const Index = () => {
       }
     } else {
       setCompletedLevels(prev => new Set([...prev, levelId]));
+      const stars = Math.floor(score / 100);
       toast({
         title: "Level Completed!",
-        description: `Great job! You scored ${score} points. Sign in to save your progress!`,
+        description: `Great job! You earned ${stars} ${stars === 1 ? 'star' : 'stars'}! Sign in to save your progress!`,
       });
     }
     setCurrentLevel(null);
@@ -177,11 +179,11 @@ const Index = () => {
         {/* Main Content */}
         <div className="p-4 space-y-6">
           {/* Hero Section */}
-          <div className="text-center py-6">
-            <div className="flex items-center justify-center mb-4">
-              <Gamepad className="w-16 h-16 text-white animate-wiggle" />
+          <div className="text-center py-3">
+            <div className="flex items-center justify-center mb-2">
+              <Gamepad className="w-10 h-10 text-white animate-wiggle" />
             </div>
-            <p className="text-lg text-white/90 font-medium drop-shadow px-4">
+            <p className="text-base text-white/90 font-medium drop-shadow px-4">
               Discover AI through fun adventures and games! 🚀
             </p>
           </div>

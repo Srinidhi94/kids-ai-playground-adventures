@@ -7,7 +7,7 @@ import { GameStep } from '@/types/Level';
 
 interface PatternGameProps {
   step: GameStep;
-  onStepComplete: (score: number) => void;
+  onStepComplete: (score: number, isCorrect?: boolean) => void;
 }
 
 export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
@@ -21,15 +21,11 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
     setSelectedAnswer(answerIndex);
     setShowResult(true);
     setHasAnswered(true);
-    
-    const isCorrect = step.correctAnswer === answerIndex;
-    const score = isCorrect ? 100 : 50; // Still give points for trying
   };
 
   const handleContinue = () => {
     const isCorrect = step.correctAnswer === selectedAnswer;
-    const score = isCorrect ? 100 : 50;
-    onStepComplete(score);
+    onStepComplete(100, isCorrect);
   };
 
   const handleIntroOrExplanationContinue = () => {
@@ -125,7 +121,7 @@ export const PatternGame = ({ step, onStepComplete }: PatternGameProps) => {
                 }`}>
                   {isCorrect 
                     ? 'Perfect! You got it!' 
-                    : 'Not quite right, but great thinking!'
+                    : 'Not quite right, but great try!'
                   }
                 </span>
               </div>

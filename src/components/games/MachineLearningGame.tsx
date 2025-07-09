@@ -7,7 +7,7 @@ import { GameStep } from '@/types/Level';
 
 interface MachineLearningGameProps {
   step: GameStep;
-  onStepComplete: (score: number) => void;
+  onStepComplete: (score: number, isCorrect?: boolean) => void;
 }
 
 export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGameProps) => {
@@ -21,15 +21,11 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
     setSelectedAnswer(answerIndex);
     setShowResult(true);
     setHasAnswered(true);
-    
-    const isCorrect = step.correctAnswer === answerIndex;
-    const score = isCorrect ? 100 : 80; // Encourage learning attempts
   };
 
   const handleContinue = () => {
     const isCorrect = step.correctAnswer === selectedAnswer;
-    const score = isCorrect ? 100 : 80;
-    onStepComplete(score);
+    onStepComplete(100, isCorrect);
   };
 
   const handleIntroOrExplanationContinue = () => {
@@ -133,7 +129,7 @@ export const MachineLearningGame = ({ step, onStepComplete }: MachineLearningGam
                 }`}>
                   {isCorrect 
                     ? 'Amazing Teaching!' 
-                    : 'Wonderful exploration! Let\'s discover more!'
+                    : 'Great thinking! Let\'s explore the correct approach!'
                   }
                 </span>
               </div>

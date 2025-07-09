@@ -7,7 +7,7 @@ import { GameStep } from '@/types/Level';
 
 interface ProblemSolvingGameProps {
   step: GameStep;
-  onStepComplete: (score: number) => void;
+  onStepComplete: (score: number, isCorrect?: boolean) => void;
 }
 
 export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameProps) => {
@@ -21,15 +21,11 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
     setSelectedAnswer(answerIndex);
     setShowResult(true);
     setHasAnswered(true);
-    
-    const isCorrect = step.correctAnswer === answerIndex;
-    const score = isCorrect ? 100 : 75; // Encourage problem-solving attempts
   };
 
   const handleContinue = () => {
     const isCorrect = step.correctAnswer === selectedAnswer;
-    const score = isCorrect ? 100 : 75;
-    onStepComplete(score);
+    onStepComplete(100, isCorrect);
   };
 
   const handleIntroOrExplanationContinue = () => {
@@ -131,7 +127,7 @@ export const ProblemSolvingGame = ({ step, onStepComplete }: ProblemSolvingGameP
                 }`}>
                   {isCorrect 
                     ? 'Brilliant Problem Solving!' 
-                    : 'Good thinking! Let\'s explore this together!'
+                    : 'Good thinking! Let\'s explore the solution together!'
                   }
                 </span>
               </div>

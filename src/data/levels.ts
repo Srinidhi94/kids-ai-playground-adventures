@@ -29,12 +29,21 @@ export const levels: Level[] = [
       },
       {
         id: 3,
+        type: "activity",
+        title: "Pattern Recognition Practice",
+        content: "Now let's try another pattern challenge. Which number comes next in this sequence: 2, 4, 6, 8, ?",
+        options: ["9", "10", "11", "12"],
+        correctAnswer: 1,
+        explanation: "Perfect! The pattern is adding 2 each time (even numbers). Recognizing number patterns is one of the first things AI learns to do!"
+      },
+      {
+        id: 4,
         type: "explanation",
         title: "How AI Sees Patterns",
         content: "AI looks at pictures like a puzzle made of tiny dots (pixels). It learns that cats usually have pointy ears, whiskers, and fur patterns. After seeing thousands of cat photos, it becomes amazing at spotting cats!"
       },
       {
-        id: 4,
+        id: 5,
         type: "quiz",
         title: "Pattern Master Quiz",
         content: "Which of these would be HARDEST for early AI to recognize?",
@@ -71,12 +80,21 @@ export const levels: Level[] = [
       },
       {
         id: 3,
+        type: "activity",
+        title: "AI Problem-Solving Practice",
+        content: "A library has 10,000 books and needs to find one specific book. What's the smartest approach an AI would use?",
+        options: ["Check every book one by one", "Use a search system with categories", "Ask everyone to help search", "Give up - too many books"],
+        correctAnswer: 1,
+        explanation: "Brilliant! AI excels at organizing and searching through large amounts of information quickly and efficiently!"
+      },
+      {
+        id: 4,
         type: "explanation",
         title: "How AI Helps Solve Problems",
         content: "Now imagine an AI helper for your room: It could make a map of your room, remind you where things belong, set timers for each area, and even play your favorite cleaning music! AI handles the boring parts so you can focus on the fun parts."
       },
       {
-        id: 4,
+        id: 5,
         type: "quiz",
         title: "Teamwork Challenge",
         content: "You're planning a birthday party. What would be the BEST job for your AI assistant?",
@@ -113,18 +131,27 @@ export const levels: Level[] = [
       },
       {
         id: 3,
+        type: "activity",
+        title: "Training Progress",
+        content: "After showing your pet 1000 photos of balls, what would it be BEST at recognizing?",
+        options: ["A basketball (round ball it has seen)", "A football (oval shaped)", "A cube (completely different shape)", "A bicycle (not a ball at all)"],
+        correctAnswer: 0,
+        explanation: "Exactly! Your pet learned from round ball examples, so it's best at recognizing other round balls. This shows why AI needs diverse training data to work well!"
+      },
+      {
+        id: 4,
         type: "explanation",
         title: "How Machine Learning Works",
         content: "Machine learning is like being a teacher to a computer. You show it thousands of examples (photos of cats, sounds of music, etc.) and it starts to notice patterns. The more examples you give, the smarter it gets!"
       },
       {
-        id: 4,
+        id: 5,
         type: "quiz",
         title: "Learning Expert Quiz",
-        content: "After showing your pet 1000 photos of balls, what would it be BEST at recognizing?",
-        options: ["A basketball (round ball it has seen)", "A football (oval shaped)", "A cube (completely different shape)", "A bicycle (not a ball at all)"],
-        correctAnswer: 0,
-        explanation: "Exactly! Your pet learned from round ball examples, so it's best at recognizing other round balls. This shows why AI needs diverse training data to work well!"
+        content: "What happens when you show your AI pet examples of different animals?",
+        options: ["It gets confused and forgets everything", "It learns to tell the difference between animals", "It only remembers the last animal you showed", "It combines all animals into one weird creature"],
+        correctAnswer: 1,
+        explanation: "Perfect! With diverse examples, AI learns to distinguish between different categories. This is why training data variety is so important for smart AI!"
       }
     ]
   },
@@ -155,18 +182,27 @@ export const levels: Level[] = [
       },
       {
         id: 3,
+        type: "activity",
+        title: "Voice Recognition Challenge",
+        content: "Which sentence would be HARDEST for AI to understand correctly?",
+        options: ["'Turn on the lights please'", "'It's raining cats and dogs'", "'What time is it?'", "'Play my favorite song'"],
+        correctAnswer: 1,
+        explanation: "Exactly! 'Raining cats and dogs' is an idiom that means heavy rain, not actual animals falling! AI struggles with expressions that don't mean exactly what they say."
+      },
+      {
+        id: 4,
         type: "explanation",
         title: "How AI Learns Language",
         content: "AI learns language by reading millions of books, articles, and conversations. It discovers that 'hungry' relates to 'food' and 'eat', just like you learned that 'meow' means a cat is talking to you!"
       },
       {
-        id: 4,
+        id: 5,
         type: "quiz",
         title: "Language Detective Quiz",
-        content: "Which sentence would be HARDEST for AI to understand correctly?",
-        options: ["'Turn on the lights please'", "'It's raining cats and dogs'", "'What time is it?'", "'Play my favorite song'"],
+        content: "Why do voice assistants sometimes misunderstand jokes or sarcasm?",
+        options: ["They don't have ears", "They can't read facial expressions or tone easily", "They're not smart enough", "They don't like jokes"],
         correctAnswer: 1,
-        explanation: "Exactly! 'Raining cats and dogs' is an idiom that means heavy rain, not actual animals falling! AI struggles with expressions that don't mean exactly what they say."
+        explanation: "Smart observation! AI focuses on words and patterns, but humor and sarcasm often depend on tone, timing, and context that's harder for AI to detect!"
       }
     ]
   },
@@ -197,12 +233,21 @@ export const levels: Level[] = [
       },
       {
         id: 3,
+        type: "activity",
+        title: "Pattern Prediction Game",
+        content: "An AI notices you always order pizza on Friday nights. What's the most reasonable prediction?",
+        options: ["You'll definitely order pizza next Friday", "You'll probably want pizza next Friday", "You'll never order pizza again", "You only eat pizza on Fridays"],
+        correctAnswer: 1,
+        explanation: "Excellent reasoning! AI learns from patterns but knows that people can change their minds. It makes probable predictions, not absolute ones!"
+      },
+      {
+        id: 4,
         type: "explanation",
         title: "How AI Makes Predictions",
         content: "AI looks at tons of past data (like weather patterns, your movie ratings, or shopping history) and finds hidden connections. The more data it has, the better its predictions become!"
       },
       {
-        id: 4,
+        id: 5,
         type: "quiz",
         title: "Prediction Expert Quiz",
         content: "An AI suggests you might like a new song. What data probably helped it decide?",

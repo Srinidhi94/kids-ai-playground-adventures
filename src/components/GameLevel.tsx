@@ -17,8 +17,12 @@ interface GameLevelProps {
 }
 
 export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [score, setScore] = useState(0);
+  const [currentStep, setCurrentStep] = useState(() => {
+    const savedProgress = localStorage.getItem(`level-${level.id}-progress`);
+    return savedProgress ? parseInt(savedProgress) : 0;
+  });
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
 
   const totalSteps = level.steps.length;
@@ -55,17 +59,34 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
     }
   };
 
-  const handleStepComplete = (stepScore: number) => {
-    setScore(prev => prev + stepScore);
+  const handleStepComplete = (stepScore: number, isCorrect?: boolean) => {
+    const step = level.steps[currentStep];
+    
+    // Track questions and correct answers for star rating
+    if (step.type === 'activity' || step.type === 'quiz') {
+      setTotalQuestions(prev => prev + 1);
+      if (isCorrect) {
+        setCorrectAnswers(prev => prev + 1);
+      }
+    }
     
     if (currentStep < totalSteps - 1) {
+      const nextStep = currentStep + 1;
+      localStorage.setItem(`level-${level.id}-progress`, nextStep.toString());
       setTimeout(() => {
-        setCurrentStep(prev => prev + 1);
+        setCurrentStep(nextStep);
       }, 1000);
     } else {
+      // Calculate star rating based on performance
+      const accuracy = totalQuestions > 0 ? correctAnswers / totalQuestions : 1;
+      let stars = 5;
+      if (accuracy === 0) stars = 1;
+      else if (accuracy < 1) stars = 3;
+      
+      localStorage.removeItem(`level-${level.id}-progress`);
       setIsComplete(true);
       setTimeout(() => {
-        onComplete(level.id, score + stepScore);
+        onComplete(level.id, stars * 100); // Use stars for scoring
       }, 2000);
     }
   };
@@ -80,15 +101,24 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
               <h2 className="text-2xl font-bold text-gray-800 mb-2">Awesome Job!</h2>
               <p className="text-gray-600 mb-4">You've mastered {level.title}!</p>
               <div className="flex justify-center mb-4">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-8 h-8 text-yellow-500 fill-current animate-star-twinkle"
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                  />
-                ))}
+                {(() => {
+                  const accuracy = totalQuestions > 0 ? correctAnswers / totalQuestions : 1;
+                  let stars = 5;
+                  if (accuracy === 0) stars = 1;
+                  else if (accuracy < 1) stars = 3;
+                  
+                  return Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-8 h-8 ${i < stars ? 'text-yellow-500 fill-current' : 'text-gray-300'} animate-star-twinkle`}
+                      style={{ animationDelay: `${i * 0.1}s` }}
+                    />
+                  ));
+                })()}
               </div>
-              <p className="text-lg font-semibold text-purple-600">Final Score: {score}</p>
+              <p className="text-lg font-semibold text-purple-600">
+                {correctAnswers} out of {totalQuestions} correct!
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -117,10 +147,6 @@ export const GameLevel = ({ level, onComplete, onBack }: GameLevelProps) => {
                 <Badge className="bg-white/90 text-gray-700 px-2 py-1 text-xs">
                   Step {currentStep + 1} of {totalSteps}
                 </Badge>
-                <div className="flex items-center text-white font-semibold text-sm">
-                  <Star className="w-4 h-4 mr-1 text-yellow-300" />
-                  {score}
-                </div>
               </div>
             </div>
 
