@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Brain, Mail, Lock, User, ArrowLeft } from 'lucide-react';
+import { Brain, Mail, Lock, User, ArrowLeft, BookOpen, Star, Gamepad, LogIn } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 
@@ -72,7 +72,7 @@ const Auth = () => {
       <div className="w-full max-w-md mx-auto min-h-screen bg-white/10 backdrop-blur-sm">
         {/* Mobile Header */}
         <div className="sticky top-0 z-50 bg-white/20 backdrop-blur-md border-b border-white/20">
-          <div className="p-4">
+          <div className="flex items-center justify-between p-4">
             <Button
               onClick={() => navigate('/')}
               variant="ghost"
@@ -82,36 +82,62 @@ const Auth = () => {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Home
             </Button>
+            <div className="flex items-center space-x-3">
+              <Brain className="w-8 h-8 text-white animate-star-twinkle" />
+              <h1 className="text-xl font-bold text-white drop-shadow-lg">
+                Future Minds AI
+              </h1>
+            </div>
           </div>
         </div>
 
         {/* Content */}
         <div className="p-4 space-y-6">
-          {/* Header */}
-          <div className="text-center py-6">
-            <div className="flex items-center justify-center mb-4">
-              <Brain className="w-10 h-10 text-white mr-3 animate-star-twinkle" />
-              <h1 className="text-2xl font-bold text-white drop-shadow-lg">Future Minds AI</h1>
-            </div>
-            <p className="text-white/90 text-base px-4">
-              {isSignUp ? 'Create your account to start learning!' : 'Welcome back to your AI adventure!'}
-            </p>
+          {/* Feature Tiles */}
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <Card className="bg-white/95 backdrop-blur-sm shadow-lg border-0">
+              <CardContent className="p-4 text-center">
+                <BookOpen className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                <h4 className="text-sm font-bold text-gray-800 mb-1">Interactive Learning</h4>
+                <p className="text-xs text-gray-600">
+                  Step-by-step adventures
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/95 backdrop-blur-sm shadow-lg border-0">
+              <CardContent className="p-4 text-center">
+                <Star className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+                <h4 className="text-sm font-bold text-gray-800 mb-1">Track Progress</h4>
+                <p className="text-xs text-gray-600">
+                  Earn stars & achievements
+                </p>
+              </CardContent>
+            </Card>
           </div>
 
-          <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
-            <CardHeader className="pb-4">
-              <CardTitle className="text-center text-xl font-bold text-gray-800">
-                {isSignUp ? 'Create Account' : 'Sign In'}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6 px-4 pb-6">
-              {/* Email Form */}
+          {/* Main CTA Card with Sign In */}
+          <Card className="bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 text-white shadow-2xl border-0">
+            <CardContent className="p-6">
+              <div className="text-center mb-6">
+                <div className="flex items-center justify-center mb-4">
+                  <Gamepad className="w-16 h-16 text-white animate-wiggle" />
+                </div>
+                <h2 className="text-2xl font-bold mb-2">
+                  {isSignUp ? 'Join the Adventure' : 'Continue Your Journey'}
+                </h2>
+                <p className="text-lg text-white/95">
+                  {isSignUp ? 'Create your account to start learning' : 'Welcome back to your AI adventure'}
+                </p>
+              </div>
+
+              {/* Embedded Sign In Form */}
               <form onSubmit={handleEmailAuth} className="space-y-4">
                 {isSignUp && (
                   <div className="space-y-2">
-                    <Label htmlFor="displayName" className="flex items-center text-sm font-medium">
+                    <Label htmlFor="displayName" className="flex items-center text-sm font-medium text-white">
                       <User className="w-4 h-4 mr-2" />
-                      Display Name
+                      Name
                     </Label>
                     <Input
                       id="displayName"
@@ -120,13 +146,13 @@ const Auth = () => {
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                       required={isSignUp}
-                      className="h-12"
+                      className="h-12 bg-white/90 border-white/20 text-gray-800"
                     />
                   </div>
                 )}
                 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="flex items-center text-sm font-medium">
+                  <Label htmlFor="email" className="flex items-center text-sm font-medium text-white">
                     <Mail className="w-4 h-4 mr-2" />
                     Email
                   </Label>
@@ -137,12 +163,12 @@ const Auth = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="h-12"
+                    className="h-12 bg-white/90 border-white/20 text-gray-800"
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="flex items-center text-sm font-medium">
+                  <Label htmlFor="password" className="flex items-center text-sm font-medium text-white">
                     <Lock className="w-4 h-4 mr-2" />
                     Password
                   </Label>
@@ -153,33 +179,65 @@ const Auth = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="h-12"
+                    className="h-12 bg-white/90 border-white/20 text-gray-800"
                   />
                 </div>
                 
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 h-12"
+                  size="lg"
+                  className="w-full bg-white text-purple-600 hover:bg-gray-100 font-bold py-4 text-lg shadow-xl transform hover:scale-105 transition-all"
                 >
-                  {loading ? 'Loading...' : isSignUp ? 'Create Account' : 'Sign In'}
+                  <LogIn className="w-6 h-6 mr-3" />
+                  {loading ? 'Loading...' : 'Start Your AI Adventure'}
                 </Button>
               </form>
-
-              <div className="text-center">
-                <Button
-                  variant="link"
-                  onClick={() => setIsSignUp(!isSignUp)}
-                  className="text-purple-600 hover:text-purple-700"
-                >
-                  {isSignUp 
-                    ? 'Already have an account? Sign in' 
-                    : "Don't have an account? Sign up"
-                  }
-                </Button>
-              </div>
             </CardContent>
           </Card>
+
+          {/* Why Choose Section (replaces sign up link) */}
+          {!isSignUp && (
+            <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
+              <CardContent className="p-5 text-center">
+                <h3 className="text-lg font-bold text-gray-800 mb-3">Why Choose Future Minds AI?</h3>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center justify-center text-sm text-gray-600">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    Learn through fun games & puzzles
+                  </div>
+                  <div className="flex items-center justify-center text-sm text-gray-600">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    No prior AI knowledge needed
+                  </div>
+                  <div className="flex items-center justify-center text-sm text-gray-600">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    Ready to explore AI concepts?
+                  </div>
+                </div>
+                <Button 
+                  variant="outline"
+                  onClick={() => setIsSignUp(true)}
+                  className="border-purple-500 text-purple-600 hover:bg-purple-50 font-semibold"
+                >
+                  Create New Account →
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Back to sign in for sign up users */}
+          {isSignUp && (
+            <div className="text-center">
+              <Button
+                variant="link"
+                onClick={() => setIsSignUp(false)}
+                className="text-white/90 hover:text-white"
+              >
+                Already have an account? Sign in
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
