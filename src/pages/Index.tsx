@@ -128,18 +128,6 @@ const Index = () => {
 
           {/* Hero Landing Section */}
           <div className="p-4 space-y-6">
-            {/* Main Hero */}
-            <div className="text-center py-6">
-              <div className="flex items-center justify-center mb-4">
-                <Brain className="w-16 h-16 text-white animate-star-twinkle drop-shadow-lg" />
-              </div>
-              <h1 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
-                Future Minds AI
-              </h1>
-              <p className="text-lg text-white/95 font-medium drop-shadow mb-6 px-4">
-                Learn AI through interactive adventures! 🚀
-              </p>
-            </div>
 
             {/* Main CTA Card */}
             <Card className="bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 text-white shadow-2xl border-0 transform hover:scale-105 transition-transform">
@@ -157,7 +145,7 @@ const Index = () => {
                     className="bg-white text-purple-600 hover:bg-gray-100 font-bold px-10 py-4 text-lg shadow-xl transform hover:scale-105 transition-all"
                   >
                     <LogIn className="w-6 h-6 mr-3" />
-                    Get Started Free
+                    Start Your AI Adventure
                   </Button>
                 </Link>
               </CardContent>
@@ -201,7 +189,7 @@ const Index = () => {
                   </div>
                   <div className="flex items-center justify-center text-sm text-gray-600">
                     <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                    100% free to get started
+                    Ready to explore AI concepts?
                   </div>
                 </div>
                 <Link to="/auth">
